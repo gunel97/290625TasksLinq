@@ -16,13 +16,13 @@ namespace _290625Task
     internal class Program
     {
         static void Main(string[] args)
-        { 
+        {
             // List of numbers
             var numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30 };
 
             // List of strings
             var cities = new List<string> { "New York", "London", "Tokyo", "Paris", "Berlin", "Sydney", "Toronto", "Mumbai", "Barcelona" };
-            
+
             // List of employees
             var employees = new List<Employee>
             {
@@ -38,7 +38,7 @@ namespace _290625Task
 
             // List of orders
             var orders = new List<Order>
-            { 
+            {
             new Order { Id = 1, CustomerName = "Alice", Amount = 150.50m, OrderDate = new DateTime(2024, 1, 15) },
             new Order { Id = 2, CustomerName = "Bob", Amount = 89.99m, OrderDate = new DateTime(2024, 2, 10) },
             new Order { Id = 3, CustomerName = "Alice", Amount = 200.00m, OrderDate = new DateTime(2024, 1, 25) },
@@ -82,19 +82,19 @@ namespace _290625Task
                 length = x.Length,
             });
 
-            foreach(var item in citiesLengthTask6)
+            foreach (var item in citiesLengthTask6)
             {
                 Console.WriteLine($"{item.city} , {item.length}");
             }
 
             //TASK7
             Console.WriteLine("*****TASK 7*****");
-            var employeeNames = employees.Select(x=>x.Name).ToList();
+            var employeeNames = employees.Select(x => x.Name).ToList();
             employeeNames.Print();
 
             //TASK8
             Console.WriteLine("*****TASK 8*****");
-            var averageSalary = employees.Select(x=>x.Salary).Average();
+            var averageSalary = employees.Select(x => x.Salary).Average();
 
             var employeesSalaryAveTask8 = employees.Select(x => new
             {
@@ -103,10 +103,10 @@ namespace _290625Task
                 IsAbove = (x.Salary > averageSalary)
             });
 
-            foreach (var item in employeesSalaryAveTask8) 
+            foreach (var item in employeesSalaryAveTask8)
             {
                 Console.WriteLine($"{item.name} ({item.department}) - Above Average: {item.IsAbove}");
-             }
+            }
 
             //TASK9
             Console.WriteLine("*****TASK 9*****");
@@ -120,7 +120,7 @@ namespace _290625Task
 
             //TASK11    
             Console.WriteLine("*****TASK 11*****");
-            var employeesSortedTask11 = employees.OrderBy(x => x.Department).ThenBy(x=>x.Age);
+            var employeesSortedTask11 = employees.OrderBy(x => x.Department).ThenBy(x => x.Age);
             employeesSortedTask11.Print();
 
             //TASK12
@@ -131,19 +131,19 @@ namespace _290625Task
             //TASK13
             Console.WriteLine("*****TASK 13*****");
             var groupEmployeesTask13 = employees.GroupBy(x => x.Department);
-           
-            foreach(var item in groupEmployeesTask13)
+
+            foreach (var item in groupEmployeesTask13)
             {
                 Console.WriteLine($"{item.Key}: {item.Count()} employees");
             }
 
             //TASK14
-            // 14. Group orders by customer
+
             Console.WriteLine("*****TASK 14*****");
 
             var orderGroupedTask14 = orders.GroupBy(x => x.CustomerName);
 
-            foreach(var item in orderGroupedTask14)
+            foreach (var item in orderGroupedTask14)
             {
                 Console.WriteLine($"{item.Key}: ${item.Sum(x => x.Amount)} total");
             }
@@ -153,7 +153,7 @@ namespace _290625Task
             var numbersGroupedOdd = from number in numbers
                                     group number by number % 2;
 
-            foreach(var item in numbersGroupedOdd)
+            foreach (var item in numbersGroupedOdd)
             {
                 Console.Write(item.Key == 0 ? "\nEven:" : "\nOdd:");
                 foreach (int i in item)
@@ -162,12 +162,12 @@ namespace _290625Task
                 }
                 Console.WriteLine();
             }
-            
+
 
             //TASK16
             Console.WriteLine("*****TASK 16*****");
             var averageSalaryTask16 = employees.Select(x => x.Salary).Average();
-            Console.WriteLine("$ "+averageSalaryTask16);
+            Console.WriteLine("$ " + averageSalaryTask16);
 
             //TASK17
             Console.WriteLine("*****TASK 17*****");
@@ -176,7 +176,7 @@ namespace _290625Task
 
             foreach (var item in groupEmployeesTask13)
             {
-                Console.WriteLine($"{item.Key}: {item.Count()} employees, average salary: ${item.Average(x=>x.Salary)} ");
+                Console.WriteLine($"{item.Key}: {item.Count()} employees, average salary: ${item.Average(x => x.Salary)} ");
             }
 
             //TASK18
@@ -193,11 +193,96 @@ namespace _290625Task
 
             Console.WriteLine($"Youngest: {youngestAgeTask19}, Oldest: {oldestAgeTask19}");
 
-           
+            //TASK20
+            Console.WriteLine("*****TASK 20*****");
+
+            var Task20 = employees.Select(x => x);
+            foreach (var item in Task20)
+            {
+                Console.WriteLine($"{item.Name} works in {item.Department} earning ${item.Salary}");
+            }
+
+            //TASK21
+            Console.WriteLine("*****TASK 21*****");
+
+            var employeesTask21 = employees.Where(x => x.Department.ToLower() == "it" && x.Salary > 80000);
+
+            Console.WriteLine("IT employees earning >$80000");
+            employeesTask21.Print();
+
+            //TASK22
+            Console.WriteLine("*****TASK 22*****");
+
+            var employeesTask22 = employees.Where(x => (x.Name.Contains("e") || x.Name.Contains("a"))
+                                  && (x.Department.ToLower() == "it" || x.Department.ToLower() == "finance"));
+            employeesTask22.Print();
+
+            //TASK23
+            Console.WriteLine("*****TASK 23*****");
+
+            var ordersTask23 = orders.Where(x => x.OrderDate > new DateTime(2024, 1, 1) && x.OrderDate < new DateTime(2024, 2, 1)).OrderBy(x => x.Amount);
+            ordersTask23.Print();
+
+            //TASK24
+            Console.WriteLine("*****TASK 24*****");
+            var employeesGroupTask24 = employees.GroupBy(x => x.Department);
+
+            //.SelectMany(g => g.OrderByDescending(x=>x.Salary).Take(3));
+
+            foreach (var item in employeesGroupTask24)
+            {
+                Console.WriteLine(item.Key);
+                var selectTop3 = item.OrderBy(x => x.Salary).Take(3);
+                selectTop3.Print();
+            }
+
+            //TASK25
+            Console.WriteLine("*****TASK 25*****");
+            var ordersGroupedTask25 = orders.GroupBy(x => x.CustomerName);
+
+            foreach (var item in ordersGroupedTask25)
+            {
+                Console.Write($"{item.Key}: {item.Count()} orders, ");
+
+                Console.WriteLine($"${item.Select(x => x.Amount).Sum()} total, ${item.Select(x => x.Amount).Average()} avg");
+            }
+
+            //TASK26
+            Console.WriteLine("*****TASK 26*****");
+
+            var averageSalaryTask26 = employees.Select(x => x.Salary).Average();
+
+            var result = employees.GroupBy(g => g.Department).Where(x => x.Average(x => x.Salary) > averageSalaryTask26);
+
+            foreach (var item in result)
+            {
+                Console.WriteLine($"{item.Key}: ${item.Average(x => x.Salary)}");
+            }
+
+            //TASK 27
+            Console.WriteLine("*****TASK 27*****");
+
+            var secondHighestTask26 = employees.Where(x => x.Department.ToLower() == "it").OrderBy(x => x.Salary).Skip(1).Take(1);
+            secondHighestTask26.Print();
+
+            //TASK28
+            Console.WriteLine("*****TASK 28*****");
+            //internetden gosterdiyiniz metod
+            var employeePairs = employees.SelectMany(e1 => employees
+            .Where(e2 => e1.Department == e2.Department && e1.Salary != e2.Salary && e1.Id < e2.Id)
+            .Select(e2 => new
+            {
+                Emp1 = e1.Name,
+                Emp2 = e2.Name,
+                Dep = e1.Department
+            }));
+
+            foreach(var item in employeePairs)
+            {
+                Console.WriteLine($"{item.Emp1} & {item.Emp2} in {item.Dep}");
+            }
+
         }
-
-
-
 
 
         // Employee class
@@ -222,6 +307,11 @@ namespace _290625Task
             public string CustomerName { get; set; }
             public decimal Amount { get; set; }
             public DateTime OrderDate { get; set; }
+
+            public override string ToString()
+            {
+                return $"ID: {Id}, CustomerName: {CustomerName}, Amount: {Amount}, OrderDate: {OrderDate}";
+            }
         }
     }
 

@@ -12,3 +12,4 @@ C:\Users\Lenovo\source\repos\290625Task\290625Task\obj\Debug\net8.0\refint\29062
 C:\Users\Lenovo\source\repos\290625Task\290625Task\obj\Debug\net8.0\290625Task.pdb
 C:\Users\Lenovo\source\repos\290625Task\290625Task\obj\Debug\net8.0\290625Task.genruntimeconfig.cache
 C:\Users\Lenovo\source\repos\290625Task\290625Task\obj\Debug\net8.0\ref\290625Task.dll
+C:\Users\Lenovo\source\repos\290625Task\290625Task\obj\Debug\net8.0\290625Task.sourcelink.json
